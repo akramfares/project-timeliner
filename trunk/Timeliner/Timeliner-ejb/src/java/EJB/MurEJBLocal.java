@@ -4,6 +4,7 @@
  */
 package EJB;
 
+import Entity.Mur;
 import javax.ejb.Local;
 
 /**
@@ -12,5 +13,10 @@ import javax.ejb.Local;
  */
 @Local
 public interface MurEJBLocal {
+	
+	public void Save(Mur m);
+	public void update(Mur m);
+	public void delete(Mur m);
+	public Mur findByProprio(String nom);
     
 }

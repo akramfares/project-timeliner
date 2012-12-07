@@ -4,6 +4,7 @@
  */
 package EJB;
 
+import Entity.Notification;
 import javax.ejb.Local;
 
 /**
@@ -13,4 +14,8 @@ import javax.ejb.Local;
 @Local
 public interface NotificationEJBLocal {
     
+	public void Save(Notification n);
+	public void update(Notification n);
+	public void delete(Notification n);
+	public Notification findByProprio(String nom);
 }

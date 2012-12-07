@@ -4,6 +4,7 @@
  */
 package EJB;
 
+import Entity.Status;
 import javax.ejb.Local;
 
 /**
@@ -13,4 +14,8 @@ import javax.ejb.Local;
 @Local
 public interface StatusEJBLocal {
     
+	public void Save(Status s);
+	public void update(Status s);
+	public void delete(Status s);
+	public Status findByProprio(String nom);
 }
