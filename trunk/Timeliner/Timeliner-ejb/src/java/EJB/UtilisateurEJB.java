@@ -5,7 +5,10 @@
 package EJB;
 
 import Entity.Utilisateur;
+import java.util.Date;
 import javax.ejb.Stateful;
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
 
 /**
  *
@@ -14,25 +17,50 @@ import javax.ejb.Stateful;
 @Stateful
 public class UtilisateurEJB implements UtilisateurEJBLocal {
 
+        @PersistenceContext(unitName="TimelinerPU")
+        protected EntityManager em;
+        
 	@Override
 	public void Save(Utilisateur u) {
-		throw new UnsupportedOperationException("Not supported yet.");
+		em.persist(u);
 	}
 
 	@Override
 	public void update(Utilisateur u) {
-		throw new UnsupportedOperationException("Not supported yet.");
+		em.merge(u);
+                em.persist(u);
 	}
 
 	@Override
 	public void delete(Utilisateur u) {
-		throw new UnsupportedOperationException("Not supported yet.");
+		em.remove(u);
+                em.persist(u);
 	}
 
 	@Override
 	public Utilisateur findByName(String nom) {
-		throw new UnsupportedOperationException("Not supported yet.");
+		return em.find(Utilisateur.class, nom);
 	}
+        
+        @Override
+        public boolean connexion(String nom,String motdepasse){
+            Utilisateur u=em.find(Utilisateur.class, nom);
+            if(u.getMotdepasse().equals(motdepasse)) {
+                return true;
+            }
+            else {
+                return false;
+            }
+        }
+        
+        @Override
+        public void inscription(String nom, String prenom, String motdepasse, String email, Date datenaissance, String adresse, boolean sexe){
+            Utilisateur u= new Utilisateur(nom,prenom,motdepasse,email,datenaissance,adresse,sexe);
+            if(em.find(Utilisateur.class,email).getEmail().equals(email)){
+                this.Save(u);
+            }
+            
+        }
 
     // Add business logic below. (Right-click in editor and choose
     // "Insert Code > Add Business Method")

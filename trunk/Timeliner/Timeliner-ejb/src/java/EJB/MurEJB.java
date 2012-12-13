@@ -6,6 +6,8 @@ package EJB;
 
 import Entity.Mur;
 import javax.ejb.Stateful;
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
 
 /**
  *
@@ -13,20 +15,24 @@ import javax.ejb.Stateful;
  */
 @Stateful
 public class MurEJB implements MurEJBLocal {
-
+        @PersistenceContext(unitName="TimelinerPU")
+        private EntityManager em;
+        
 	@Override
 	public void Save(Mur m) {
-		throw new UnsupportedOperationException("Not supported yet.");
+		em.persist(m);
 	}
 
 	@Override
 	public void update(Mur m) {
-		throw new UnsupportedOperationException("Not supported yet.");
+		em.merge(m);
+                em.persist(m);
 	}
 
 	@Override
 	public void delete(Mur m) {
-		throw new UnsupportedOperationException("Not supported yet.");
+		em.remove(m);
+                em.persist(m);
 	}
 
 	@Override

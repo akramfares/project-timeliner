@@ -5,6 +5,7 @@
 package Entity;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import javax.persistence.Column;
@@ -42,15 +43,38 @@ public class Utilisateur implements Serializable {
     private Boolean sexe;
     @Column
     private String adresse;
-
-    @ManyToOne
-    private List<Ami> amis;
+    @OneToMany
+    private List<Status> status = new ArrayList<Status>();
+    @OneToMany
+    private List<Ami> amis = new ArrayList<Ami>();
     @OneToOne
     private Mur mur;
     @OneToMany
-    private List<Message> messages;
+    private List<Message> messages = new ArrayList<Message>();
     @OneToMany
-    private List<Notification> notifications;
+    private List<Notification> notifications = new ArrayList<Notification>();
+
+    public Utilisateur() {
+    }
+
+    public Utilisateur(String nom, String prenom, String motdepasse, String email, Date datenaissance, String adresse, boolean sexe){
+        this.nom=nom;
+        this.prenom=prenom;
+        this.motdepasse=motdepasse;
+        this.email=email;
+        this.datenaissance=datenaissance;
+        this.adresse=adresse;
+        this.sexe=sexe;
+    }
+
+    public List<Status> getStatus() {
+        return status;
+    }
+
+    public void setStatus(List<Status> status) {
+        this.status = status;
+    }
+    
 
     public Long getId() {
         return id;

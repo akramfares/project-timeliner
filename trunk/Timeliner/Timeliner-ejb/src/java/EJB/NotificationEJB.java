@@ -6,6 +6,8 @@ package EJB;
 
 import Entity.Notification;
 import javax.ejb.Stateful;
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
 
 /**
  *
@@ -14,19 +16,24 @@ import javax.ejb.Stateful;
 @Stateful
 public class NotificationEJB implements NotificationEJBLocal {
 
+        @PersistenceContext(unitName="TimelinerPU")
+        private EntityManager em;
+        
 	@Override
 	public void Save(Notification n) {
-		throw new UnsupportedOperationException("Not supported yet.");
+		em.persist(n);
 	}
 
 	@Override
 	public void update(Notification n) {
-		throw new UnsupportedOperationException("Not supported yet.");
+		em.merge(n);
+                em.persist(n);
 	}
 
 	@Override
 	public void delete(Notification n) {
-		throw new UnsupportedOperationException("Not supported yet.");
+		em.remove(n);
+                em.persist(n);
 	}
 
 	@Override

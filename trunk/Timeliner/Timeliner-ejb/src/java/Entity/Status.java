@@ -12,6 +12,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 
 /**
  *
@@ -30,7 +31,7 @@ public class Status implements Serializable {
     @Column
     private String piecejointe;
     @ManyToOne
-    private List<Mur> murs;
+    private Mur mur;
 
     public Long getId() {
         return id;
@@ -64,12 +65,12 @@ public class Status implements Serializable {
         this.piecejointe = piecejointe;
     }
 
-    public List<Mur> getMurs() {
-        return murs;
+    public Mur getMur() {
+        return mur;
     }
 
-    public void setMurs(List<Mur> murs) {
-        this.murs = murs;
+    public void setMurs(Mur mur) {
+        this.mur = mur;
     }
 
     @Override

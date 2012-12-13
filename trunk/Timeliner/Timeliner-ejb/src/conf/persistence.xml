@@ -5,6 +5,13 @@
     <jta-data-source>timeliner</jta-data-source>
     <exclude-unlisted-classes>false</exclude-unlisted-classes>
     <properties>
+      <property name="serverName" value="localhost"/>
+      <property name="portNumber" value="1527"/>
+      <property name="databaseName" value="timelinerDB"/>
+      <property name="User" value="username"/>
+      <property name="Password" value="time"/>
+      <property name="URL" value="jdbc:derby://localhost:1527/timelinerDB"/>
+      <property name="driverClass" value="org.apache.derby.jdbc.ClientDriver"/>
       <property name="eclipselink.ddl-generation" value="drop-and-create-tables"/>
     </properties>
   </persistence-unit>
