@@ -11,6 +11,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 
 /**
  *
@@ -22,13 +23,13 @@ public class Message implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-    @ManyToOne
-    private Utilisateur proprio;
     @Column
     private String titre;
     @Column
     private String message;
-
+    @ManyToOne
+    private Utilisateur proprio;
+    
     public Utilisateur getProprio() {
         return proprio;
     }

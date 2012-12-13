@@ -6,6 +6,8 @@ package EJB;
 
 import Entity.Status;
 import javax.ejb.Stateful;
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
 
 /**
  *
@@ -14,19 +16,24 @@ import javax.ejb.Stateful;
 @Stateful
 public class StatusEJB implements StatusEJBLocal {
 
+        @PersistenceContext(unitName="TimelinerPU")
+        protected EntityManager em;
+        
 	@Override
 	public void Save(Status s) {
-		throw new UnsupportedOperationException("Not supported yet.");
+		em.persist(s);
 	}
 
 	@Override
 	public void update(Status s) {
-		throw new UnsupportedOperationException("Not supported yet.");
+		em.merge(s);
+                em.persist(s);
 	}
 
 	@Override
 	public void delete(Status s) {
-		throw new UnsupportedOperationException("Not supported yet.");
+		em.remove(s);
+                em.persist(s);
 	}
 
 	@Override

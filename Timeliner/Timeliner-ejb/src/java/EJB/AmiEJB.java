@@ -6,6 +6,8 @@ package EJB;
 
 import Entity.Ami;
 import javax.ejb.Stateful;
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
 
 /**
  *
@@ -13,20 +15,24 @@ import javax.ejb.Stateful;
  */
 @Stateful
 public class AmiEJB implements AmiEJBLocal {
+        @PersistenceContext(unitName="TimelinerPU")
+        private EntityManager em;
 
 	@Override
 	public void Save(Ami a) {
-		throw new UnsupportedOperationException("Not supported yet.");
+		em.persist(a);
 	}
 
 	@Override
 	public void update(Ami a) {
-		throw new UnsupportedOperationException("Not supported yet.");
+		em.merge(a);
+                em.persist(a);
 	}
 
 	@Override
 	public void delete(Ami a) {
-		throw new UnsupportedOperationException("Not supported yet.");
+		em.remove(a);
+                em.persist(a);
 	}
 
 	@Override

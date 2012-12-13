@@ -5,6 +5,7 @@
 package EJB;
 
 import Entity.Utilisateur;
+import java.util.Date;
 import javax.ejb.Local;
 
 /**
@@ -18,4 +19,6 @@ public interface UtilisateurEJBLocal {
 	public void update(Utilisateur u);
 	public void delete(Utilisateur u);
 	public Utilisateur findByName(String nom);
+        public boolean connexion(String nom, String motdepasse);
+        public void inscription(String nom, String prenom, String motdepasse, String email, Date datenaissance, String adresse, boolean sexe);
 }
