@@ -5,6 +5,8 @@
 package EJB;
 
 import Entity.Mur;
+import Entity.Status;
+import javax.ejb.EJB;
 import javax.ejb.Stateful;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -17,6 +19,8 @@ import javax.persistence.PersistenceContext;
 public class MurEJB implements MurEJBLocal {
         @PersistenceContext(unitName="TimelinerPU")
         private EntityManager em;
+        @EJB
+        StatusEJBLocal statusEJB;
         
 	@Override
 	public void Save(Mur m) {
@@ -40,7 +44,17 @@ public class MurEJB implements MurEJBLocal {
 		throw new UnsupportedOperationException("Not supported yet.");
 	}
 
-    // Add business logic below. (Right-click in editor and choose
-    // "Insert Code > Add Business Method")
+        // Add business logic below. (Right-click in editor and choose
+        // "Insert Code > Add Business Method")
+
+        @Override
+        public void addStatus(Status status) {
+            statusEJB.Save(status);
+        }
+
+        @Override
+        public void clearStatus(Mur m) {
+            statusEJB.deleteStatusByMur(m);
+        }
 
 }

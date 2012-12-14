@@ -4,6 +4,7 @@
  */
 package EJB;
 
+import Entity.Mur;
 import Entity.Status;
 import javax.ejb.Local;
 
@@ -18,4 +19,5 @@ public interface StatusEJBLocal {
 	public void update(Status s);
 	public void delete(Status s);
 	public Status findByProprio(String nom);
+        public void deleteStatusByMur(Mur m);
 }
