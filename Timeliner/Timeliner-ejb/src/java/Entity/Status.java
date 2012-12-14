@@ -33,6 +33,17 @@ public class Status implements Serializable {
     @ManyToOne
     private Mur mur;
 
+    public Status() {
+    }
+
+    public Status(Utilisateur proprio, String contenu, Mur mur) {
+        this.proprio = proprio;
+        this.contenu = contenu;
+        this.mur = mur;
+    }
+
+    
+    
     public Long getId() {
         return id;
     }

@@ -31,6 +31,14 @@ public class Mur implements Serializable {
     @OneToOne
     private Utilisateur proprio;
 
+    public Mur() {
+    }
+
+    public Mur(Utilisateur proprio) {
+        this.proprio = proprio;
+    }
+
+    
     public Long getId() {
         return id;
     }

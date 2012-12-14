@@ -21,4 +21,6 @@ public interface UtilisateurEJBLocal {
 	public Utilisateur findByName(String nom);
         public boolean connexion(String nom, String motdepasse);
         public void inscription(String nom, String prenom, String motdepasse, String email, Date datenaissance, String adresse, boolean sexe);
+        public Utilisateur getUserConnected();
+        public void setUserConnected(Utilisateur userConnected);
 }
