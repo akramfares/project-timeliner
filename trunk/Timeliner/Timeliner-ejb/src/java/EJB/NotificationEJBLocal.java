@@ -5,6 +5,7 @@
 package EJB;
 
 import Entity.Notification;
+import java.util.List;
 import javax.ejb.Local;
 
 /**
@@ -18,4 +19,6 @@ public interface NotificationEJBLocal {
 	public void update(Notification n);
 	public void delete(Notification n);
 	public Notification findByProprio(String nom);
+        public List<Notification> getAll();
+        public List<Notification> getNonLus();
 }

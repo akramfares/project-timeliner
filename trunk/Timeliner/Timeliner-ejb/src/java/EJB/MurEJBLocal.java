@@ -6,6 +6,7 @@ package EJB;
 
 import Entity.Mur;
 import Entity.Status;
+import java.util.List;
 import javax.ejb.Local;
 
 /**
@@ -21,5 +22,6 @@ public interface MurEJBLocal {
 	public Mur findByProprio(String nom);
         public void addStatus(Status status);
         public void clearStatus(Mur m);
+        public List<Status> getAllStatus();
     
 }
