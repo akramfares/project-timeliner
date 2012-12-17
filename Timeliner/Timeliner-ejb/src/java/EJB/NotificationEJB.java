@@ -5,9 +5,11 @@
 package EJB;
 
 import Entity.Notification;
+import java.util.List;
 import javax.ejb.Stateful;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 
 /**
  *
@@ -43,5 +45,17 @@ public class NotificationEJB implements NotificationEJBLocal {
 
     // Add business logic below. (Right-click in editor and choose
     // "Insert Code > Add Business Method")
+
+        @Override
+        public List<Notification> getAll() {
+            Query q = em.createQuery("SELECT n FROM Notification n");
+            return q.getResultList();
+        }
+
+        @Override
+        public List<Notification> getNonLus() {
+            Query q = em.createQuery("SELECT n FROM Notification n WHERE n.etat = false");
+            return q.getResultList();
+        }
 
 }

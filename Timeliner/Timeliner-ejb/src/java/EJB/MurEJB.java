@@ -6,6 +6,7 @@ package EJB;
 
 import Entity.Mur;
 import Entity.Status;
+import java.util.List;
 import javax.ejb.EJB;
 import javax.ejb.Stateful;
 import javax.persistence.EntityManager;
@@ -55,6 +56,11 @@ public class MurEJB implements MurEJBLocal {
         @Override
         public void clearStatus(Mur m) {
             statusEJB.deleteStatusByMur(m);
+        }
+
+        @Override
+        public List<Status> getAllStatus() {
+            return statusEJB.getAll();
         }
 
 }

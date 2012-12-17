@@ -57,4 +57,10 @@ public class StatusEJB implements StatusEJBLocal {
             }
         }
 
+        @Override
+        public List<Status> getAll() {
+            Query q = em.createQuery("SELECT s FROM Status s");
+            return q.getResultList();
+        }
+
 }

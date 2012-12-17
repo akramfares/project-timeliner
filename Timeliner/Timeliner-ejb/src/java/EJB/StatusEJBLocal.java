@@ -6,6 +6,7 @@ package EJB;
 
 import Entity.Mur;
 import Entity.Status;
+import java.util.List;
 import javax.ejb.Local;
 
 /**
@@ -20,4 +21,5 @@ public interface StatusEJBLocal {
 	public void delete(Status s);
 	public Status findByProprio(String nom);
         public void deleteStatusByMur(Mur m);
+        public List<Status> getAll();
 }
