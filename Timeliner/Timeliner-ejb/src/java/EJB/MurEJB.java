@@ -6,6 +6,7 @@ package EJB;
 
 import Entity.Mur;
 import Entity.Status;
+import Entity.Utilisateur;
 import java.util.List;
 import javax.ejb.EJB;
 import javax.ejb.Stateful;
@@ -62,5 +63,10 @@ public class MurEJB implements MurEJBLocal {
         public List<Status> getAllStatus() {
             return statusEJB.getAll();
         }
+
+    @Override
+    public List<Status> getUserMur(Utilisateur u) {
+        return statusEJB.getAllByMur(u.getMur());
+    }
 
 }

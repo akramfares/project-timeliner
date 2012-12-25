@@ -4,8 +4,10 @@
  */
 package EJB;
 
+import Entity.Status;
 import Entity.Utilisateur;
 import java.util.Date;
+import java.util.List;
 import javax.ejb.Local;
 
 /**
@@ -21,6 +23,8 @@ public interface UtilisateurEJBLocal {
 	public Utilisateur findByName(String nom);
         public boolean connexion(String nom, String motdepasse);
         public void inscription(String nom, String prenom, String motdepasse, String email, Date datenaissance, String adresse, boolean sexe);
+        public void inscription(String email, String motdepasse);
         public Utilisateur getUserConnected();
         public void setUserConnected(Utilisateur userConnected);
+        public List<Status> getMur();
 }

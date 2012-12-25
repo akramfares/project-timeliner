@@ -1,0 +1,26 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:ui="http://java.sun.com/jsf/facelets">
+    <h:head>
+        <title>Facelet Title</title>
+    </h:head>
+    <h:body>
+        <ui:include src="header.xhtml" />
+        <h1>Inscription</h1>
+        <h:form id="form">
+                <p>Login : <h:inputText id="login" value="#{homeJSFBean.login}" required="true" /></p>
+                <p>Mot de passe : <h:inputText id="motdepasse" value="#{homeJSFBean.motdepasse}" required="true" /></p>
+                <h:commandButton value="valider" action="#{homeJSFBean.submitInscription()}" />
+        </h:form>
+        
+        <h1>Connexion</h1>
+        <h:form id="formConnexion">
+                <p>Login : <h:inputText id="loginConnexion" value="#{homeJSFBean.login}" required="true" /></p>
+                <p>Mot de passe : <h:inputText id="motdepasseConnexion" value="#{homeJSFBean.motdepasse}" required="true" /></p>
+                <h:commandButton value="valider" action="#{homeJSFBean.submitConnexion()}" />
+        </h:form>
+    </h:body>
+</html>
+

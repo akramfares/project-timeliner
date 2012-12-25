@@ -63,4 +63,11 @@ public class StatusEJB implements StatusEJBLocal {
             return q.getResultList();
         }
 
+    @Override
+    public List<Status> getAllByMur(Mur m) {
+        Query q = em.createQuery("SELECT s FROM Status s WHERE s.mur='"+m+"'");
+             q.setParameter(1, m);
+             return q.getResultList();
+    }
+
 }
