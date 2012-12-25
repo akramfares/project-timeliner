@@ -8,10 +8,12 @@ import Entity.Mur;
 import Entity.Status;
 import Entity.Utilisateur;
 import java.util.Date;
+import java.util.List;
 import javax.ejb.EJB;
 import javax.ejb.Stateful;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 
 /**
  *
@@ -64,13 +66,14 @@ public class UtilisateurEJB implements UtilisateurEJBLocal {
 	}
         
         @Override
-        public boolean connexion(String nom,String motdepasse){
-            Utilisateur u=em.find(Utilisateur.class, nom);
-            if(u.getMotdepasse().equals(motdepasse)) {
-                userConnected = u; // Initialiser l'utilisateur connecté
+        public boolean connexion(String email,String motdepasse){
+            Query q;
+            q = em.createQuery("SELECT u FROM Utilisateur u WHERE u.email='"+email+"' AND u.motdepasse='"+motdepasse+"'");
+            if(!q.getResultList().isEmpty()){ 
+                userConnected = (Utilisateur) q.getSingleResult();
                 return true;
             }
-            else {
+            else{
                 return false;
             }
         }
@@ -93,5 +96,21 @@ public class UtilisateurEJB implements UtilisateurEJBLocal {
 
     // Add business logic below. (Right-click in editor and choose
     // "Insert Code > Add Business Method")
+
+    @Override
+    public void inscription(String email, String motdepasse) {
+        Utilisateur u= new Utilisateur("Akram","Fares",motdepasse,email,new Date(),"",true);
+        this.Save(u);    
+        // Création du mur de l'utilisateur
+        murEJB.Save(new Mur(u));
+        // Ajouter un message sur son mur.
+        murEJB.addStatus(new Status(u, "Bonjour, je viens de m'inscrire sur timeliner", u.getMur()));
+        
+    }
+
+    @Override
+    public List<Status> getMur() {
+       return murEJB.getUserMur(userConnected);
+    }
 
 }

@@ -22,4 +22,5 @@ public interface StatusEJBLocal {
 	public Status findByProprio(String nom);
         public void deleteStatusByMur(Mur m);
         public List<Status> getAll();
+        public List<Status> getAllByMur(Mur m);
 }
